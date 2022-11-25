@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ICONSCOUT CDN -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css"
+    />
+
+    <link rel="stylesheet" href="{% static "css/index.css" %}" />
+    <title>SOCOL</title>
+  </head>
+  <body>
+   {% include 'core/navbar.html' %}
+
+    {% comment %} <!--------------------------------------- MAIN ---------------------------------------> {% endcomment %}
+    <main>
+      <div class="container">
+        {% comment %} <!--------------------------------------- LEFT ---------------------------------------> {% endcomment %}
+
+        <div class="left">
+          <a href="{% url 'profile_view' request.user.username %}" class="profile">
+            <div class="profile-photo">
+            {% if user.picture %}
+            
+                  <img src="{{ request.user.picture.url }}" alt="">
+            
+            {% else %}
+                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"  alt="">
+            {% endif %}
+             
+            </div>
+            <div class="handle">
+              <h4 >Dyna Avi</h4>
+              <p class="text-muted">{{request.user.username}}</p>
+            </div>
+          </a>
+          {% comment %} <!--------------------------------------- SIDEBAR ---------------------------------------> {% endcomment %}
+          <div class="sidebar">
+            <a class="menu-item active">
+              <span><i class="uil uil-home"></i></span>
+              <h3>Home</h3>
+            </a>
+            <a class="menu-item">
+              <span><i class="uil uil-compass"></i></span>
+              <h3>Explore</h3>
+            </a>
+
+            <a class="menu-item" id="notification">
+              <span
+                ><i class="uil uil-bell"
+                  ><small class="notification-count">9+</small></i
+                ></span
+              >
+              <h3>Notification</h3>
+              {% comment %} <!--------------------------------------- NOTIFICATION POPUP ---------------------------------------> {% endcomment %}
+              <div class="notification-popup">
+                <div>
+                  <div class="profile-photo">
+                    <img src="./clients/1-(11).jpg" alt="" />
+                  </div>
+                  <div class="notification-body">
+                    <b>keke benjamin</b> accepted your friend request
+                    <small class="text-muted">2 DAYS AGO</small>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="profile-photo">
+                    <img src="./clients/1-(12).jpg" alt="" />
+                  </div>
+                  <div class="notification-body">
+                    <b>keke benjamin</b> accepted your friend request
+                    <small class="text-muted">2 DAYS AGO</small>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="profile-photo">
+                    <img src="./clients/1-(13).jpg" alt="" />
+                  </div>
+                  <div class="notification-body">
+                    <b>keke benjamin</b> accepted your friend request
+                    <small class="text-muted">2 DAYS AGO</small>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="profile-photo">
+                    <img src="./clients/1-(14).jpg" alt="" />
+                  </div>
+                  <div class="notification-body">
+                    <b>keke benjamin</b> accepted your friend request
+                    <small class="text-muted">2 DAYS AGO</small>
+                  </div>
+                </div>
+              </div>
+              {% comment %} <!--------------------------------------- END OF NOTIFICATION POPUP ---------------------------------------> {% endcomment %}
+            </a>
+            <a class="menu-item" id="messages-notifications">
+              <span
+                ><i class="uil uil-envelope"
+                  ><small class="notification-count">6</small></i
+                ></span
+              >
+              <h3>Message</h3>
+            </a>
+            <a class="menu-item">
+              <span><i class="uil uil-bookmark"></i></span>
+              <h3>Bookmark</h3>
+            </a>
+            <a class="menu-item">
+              <span><i class="uil uil-chart-line"></i></span>
+              <h3>Analytics</h3>
+            </a>
+            <a class="menu-item" id="theme">
+              <span><i class="uil uil-palette"></i></span>
+              <h3>Themes</h3>
+            </a>
+            <a class="menu-item">
+              <span><i class="uil uil-setting"></i></span>
+              <h3>Settings</h3>
+            </a>
+          </div>
+          {% comment %} <!--------------------------------------- END OF SIDEBAR ---------------------------------------> {% endcomment %}
+          <label class="btn btn-primary" for="create-post">Create Post</label>
+        </div>
+        {% comment %} <!--------------------------------------- END OF LEFT ---------------------------------------> {% endcomment %}
+
+        {% comment %} <!--------------------------------------- MIDDLE ---------------------------------------> {% endcomment %}
+
+        <div class="middle">
+         {% block stories %}{% endblock stories %}
+          <form action="" class="create-post">
+            <div class="profile-photo">
+              <img src="./clients/1-(15).jpg" alt="" />
+            </div>
+            <input
+              type="text"
+              placeholder="What's on your mind, Diana?"
+              id=""
+              create-post
+            />
+            <input type="submit" value="post" class="btn btn-primary" />
+          </form>
+          {% comment %} <!--------------------------------------- FEEDS ---------------------------------------> {% endcomment %}
+          {% block feeds %}{% endblock feeds %}
+        </div>
+
+        {% comment %} <!--------------------------------------- RIGHT ---------------------------------------> {% endcomment %}
+        
+        <div class="right">
+            <div class="messages">
+                <div class="heading">
+                    <h4>Messages</h4> <i class="uil uil-edit"></i>
+                </div>
+        {% comment %} <!--------------------------------------- SEARCH BAR ---------------------------------------> {% endcomment %}
+                <div class="search-bar">
+                <i class="uil uil-search"></i>
+                <input type="search" placeholder="Search messages" id="message-search">
+            </div>
+        {% comment %} <!-----------------------------MESSAGES CATEGORY------------------------------> {% endcomment %}
+            <div class="category">
+                <h6 class="active">Primary</h6>
+                <h6>General</h6>
+                <h6  class="message-requests">Requests(3)</h6>
+            </div>
+        {% comment %} <!-----------------------------MESSAGES ------------------------------> {% endcomment %}
+            {% block messages %}{% endblock messages %}
+        {% comment %} <!-----------------------------END OF RIGHT ------------------------------> {% endcomment %}
+
+      </div>
+    </main>
+        {% comment %} <!-----------------------------THEME CUSTOMIZATION ------------------------------> {% endcomment %}
+        <div class="customize-theme">
+          <div class="card">
+            <h2>Customize your view</h2>
+            <p class="text-muted">Manage your font size,color, and background.</p>
+
+        {% comment %} <!-----------------------------FONT SIZES-----------------------------> {% endcomment %}
+        <div class="font-size">
+          <h4>Font Size</h4>
+          <div class="">
+            <h6>Aa</h6>
+            <div class="choose-size">
+              <span class="font-size-1"></span>
+              <span class="font-size-2 active"></span>
+              <span class="font-size-3"></span>
+              <span class="font-size-4"></span>
+              <span class="font-size-5"></span>
+            </div>
+            <h3>Aa</h3>
+          </div>
+        </div>
+
+        {% comment %} <!-----------------------------PRIMARY COLORS-----------------------------> {% endcomment %}
+        <div class="color">
+          <h4>Color</h4>
+          <div class="choose-color">
+            <span class="color-1 active"> </span>
+            <span class="color-2 "> </span>
+            <span class="color-3 "> </span>
+            <span class="color-4 "> </span>
+            <span class="color-5 "> </span>
+          </div>
+        </div>
+
+        {% comment %} <!-----------------------------BACKGROUND COLORS-----------------------------> {% endcomment %}
+        <div class="background">
+          <h4>Background</h4>
+          <div class="choose-bg ">
+            <div class="bg-1 active">
+              <span></span>
+              <h5 for="bg-1">Light</h5>
+            </div>
+            <div class="bg-2">
+              <span></span>
+              <h5>Dim</h5>
+              
+            </div>
+            <div class="bg-3">
+              <span></span>
+              <h5 for="bg-3">Light Out</h5>
+              
+            </div>
+          </div>
+        </div>
+
+         
+       </div>
+<script src="{% static 'js/index.js' %}"></script>
+  </body>
+</html>

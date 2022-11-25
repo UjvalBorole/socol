@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ICONSCOUT CDN -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css"
+    />
+
+    <link rel="stylesheet" href="{% static "css/index.css" %}" />
+    <title>SOCOL</title>
+  </head>
+  <body>
+<nav>
+    <div class="container">
+      <h2 class="log text-decoration-none"><a href="{% url 'index' %}">SOCOL</a></h2>
+
+      <form  action="{% url 'allprofile' %}"  method="GET" >
+      <div class="search-bar">
+        <button type="submit"><i class="uil uil-search"></i> </button>
+        <input
+          type="search"
+          placeholder="Search for creator,inspirations and projects" name="query"
+        />
+      </div>
+    </form>
+
+      <div class="create">
+        <label class="btn btn-primary" for="#">Create</label>
+        <div class="profile-photo">
+          <img src="./clients/1-(16).jpg" alt="" srcset="" />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script src="{% static 'js/index.js' %}"></script>
+  </body>
+</html>
